@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+// Function Prototype.
+void rotationalCipher(char* Message, int Key);
+
+int main(void)
+{
+    int Key = 1;
+    char Message[1024];
+    
+    // Ask the user for the text to encrypt.
+    printf("Enter text for encryption: ");
+    
+    // Get the user's text input and store it in Message variable.
+    fgets(Message, sizeof(Message), stdin);
+    
+    //Print the cipher text.
+    printf("The cipher text is: ");
+    
+    //Print the ciphered text.
+}
+
+// Defining the Rotational Cipher.
+void rotationalCipher( char* Message, int Key)
+{
+    int i = 0, cipherValue;
+    char Cipher;
+    
+    while(Message[i] != '\0' && strlen(Message) - 1 > i)
+    {
+        cipherValue = ((int))
+        Cipher = (char)(cipherValue);)
+    }
+}
