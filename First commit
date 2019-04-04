@@ -1,0 +1,7 @@
+#include <stdio.h>  // This defines the printf() and scanf() functions.
+
+int main()  // Main function body gets initialised here.
+{
+printf("This is the very first commit\n");  // Prints "This is the very first commit" to the monitor.
+return 0; // Returns the program and exits.
+}
