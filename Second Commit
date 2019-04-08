@@ -1,36 +1,94 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+/*
+ *                              ENCRYPTION/DECRYPTION PROGRAM
+ */
 
-// Function Prototype.
-void rotationalCipher(char* Message, int Key);
+#include <stdio.h>  // Defines the scanf() and printf() functions.
+// Include other libraries as needed.
 
-int main(void)
+void PrintMenu(void);   // First function prototype. It declares the function definition below the main code.
+// Declare function prototypes here.
+
+int main()  // Main function body.
 {
-    int Key = 1;
-    char Message[1024];
+    int x;  // Declare a variable and call it x. This value determines what case is run.
+    printf("Encryption/Decryption Program\n\n");    //Print title of the program once.
+    PrintMenu();    // Call the PrintMenu function. It literally prints the menu to choose from.
+    scanf("%d", &x);    // Take the input typed and save it in x.
     
-    // Ask the user for the text to encrypt.
-    printf("Enter text for encryption: ");
-    
-    // Get the user's text input and store it in Message variable.
-    fgets(Message, sizeof(Message), stdin);
-    
-    //Print the cipher text.
-    printf("The cipher text is: ");
-    
-    //Print the ciphered text.
-}
-
-// Defining the Rotational Cipher.
-void rotationalCipher( char* Message, int Key)
-{
-    int i = 0, cipherValue;
-    char Cipher;
-    
-    while(Message[i] != '\0' && strlen(Message) - 1 > i)
+    switch(x)   // Switch case used to have the programs seperate but with the same body of code. Instead of writing 6 seperate programs.
     {
-        cipherValue = ((int))
-        Cipher = (char)(cipherValue);)
+        case 1: // Performs the Caesar Cipher Encription Program with key.
+            /*
+             TO DO:
+             print text to encrypt
+             scan what is typed
+             print enter a desired key
+             scan what is enetered
+             perform the encryption
+             print the encrypted text
+             send user to the start of the program.
+            */
+            break;
+        case 2: // Performs the Caesar Cipher Decryption Program with key.
+            /*
+             TO DO:
+             print text to decrypt
+             scan text
+             print required key
+             scan key
+             perform decryption
+             print decrypted text
+             send user to the start of the program.
+            */
+            break;
+        case 3: // Performs The Caesar Cipher Decryption without key.
+            /*
+             TO DO:
+             print text to decrypt
+             perform decryption
+             print decrypted text
+             send user to start of the program
+             */
+            break;
+        case 4: // Performs the Substitution cipher encryption with key.
+            /*
+             TO DO:
+             print text to encrypt
+             scan text
+             print required key
+             scan key
+             perform encryption
+             print encrypted text
+             send user tothe start of program
+             */
+            break;
+        case 5: // Performs The Substitution cipher decryption with key.
+            break;
+        case 6: // Performs the Substitutiom cipher decryption without key.
+            break;
+        case 7: // Exits program.
+            break;
+        default:    // Case for if choice made isn't one of the options.
+            do  // Do the below things.
+            {
+                printf("\nInvalid selection %d.\nPlease enter a selection between 1 and 7\n\n", x); // Prompts the user they've made an incorrect selection.
+                PrintMenu();    // Calls the print menu function.
+                scanf("%d", &x);    // Takes the user's input and stores it in x.
+            }
+            while(x < 1 || x > 7);  // While this condition isn't met do the above stuff.
     }
 }
+
+void PrintMenu(void)
+{
+    printf("(1) CAESAR CIPHER ENCRYPTION WITH KEY\n");
+    printf("(2) CAESAR CIPHER DECRYPTION WITH KEY\n");
+    printf("(3) CAESAR CIPHER DECRYPTION WITHOUT KEY\n");
+    printf("(4) SUBSTITUTION CIPHER ENCRYPTION WITH KEY\n");
+    printf("(5) SUBSTITUTION CIPHER DECRYPTION WITH KEY\n");
+    printf("(6) SUBSTITUTION CIPHER DECRYPTION WITHOUT KEY\n");
+    printf("(7) EXIT PROGRAM\n\n");
+    printf("Please enter a selection: ");
+}
+
+// Each new definition should have the program within the fuction itself, the main code will have hardly anything in it and it will make it more readable to have it set out this way.
