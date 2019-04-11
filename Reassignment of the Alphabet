@@ -1,0 +1,14 @@
+#include <stdio.h>  // Define the printf() and scanf() functions.
+
+int main()  // Main function body.
+{
+    char ALPHABET[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Declaring the capital alphabet as char string.
+    int i;  // Declare i as an integer, to be used as a pointer.
+    int c;  // Declare c as an integer to be used in moving the alphabet to zero.
+    for(i = 0; i < 26; i = i + 1)   // For loop which set i = 0, up to 25, and adds one to it.
+    {
+        c = ALPHABET[i] - 65;   // Takes the alphabet and subtracts 65 from its ASCII assignment.
+        printf("%c %d\n", ALPHABET[i], c);    // Prints the alphabet and the new assignment of numbers to letters, eg, A=0, B=1, etc.
+    }
+    return 0;   // Returns the program.
+}
