@@ -1,0 +1,12 @@
+#include <stdio.h>  // Define the printf() and scanf() functions.
+
+int main()  // Main function body.
+{
+    char ALPHABET[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Declaring the capital alphabet as char string.
+    int i;  // Declare i as an integer, to be used as a pointer.
+    for(i = 0; i < 26; i = i + 1)   // For loop which set i = 0, up to 25, and adds one to it.
+    {
+        printf("%c %d\n", ALPHABET[i], ALPHABET[i]);    // Prints the alphabet and the ASCII code of each letter.
+    }
+    return 0;   // Returns the program.
+}
