@@ -1,0 +1,30 @@
+#include <stdio.h>  // Define the printf() and scanf() functions.
+
+int main()  // Main function body.
+{
+    char Message[1024], EncryptedMessage[1024]; // Declaring the capital alphabet as char string.
+    int i;  // Declare i as an integer, to be used as a pointer.
+    int c;  // Declare c as an integer to be used in moving the alphabet to zero.
+    int Key;    // Declare Key as an integer to be used in shifting the cipher.
+    printf("Enter a text: \n"); // Prints a prompt for the user to enter a text.
+    scanf("%s", Message);   // Scans the text entered.
+    printf("Enter a key: \n");  // Prints a prompt for the user to enter a key.
+    scanf("%d", &Key);  // Scans the key entered.
+    for(i = 0; Message[i] != '\0'; i = i + 1)   // For loop which sets i to zero, until a null is found, and adds one to it.
+    {
+        if(Message[i] >= 'A' && Message[i] <= 'Z')  // If loop for determining a capital letter text.
+        {
+            c = Message[i] - 65;   // Takes the message and subtracts 65 from its ASCII assignment.
+            EncryptedMessage[i] = ((c + Key) % 26 + 'A');   // Encrypted message is equal to this equation.
+            printf("%c", EncryptedMessage[i]);    // Prints the new message output (Encrypted text).
+        }
+        if(Message[i] >= 'a' && Message[i] <= 'z')  // If loop for determining a lower case letter.
+        {
+            c = Message[i] - 97;    // Takes the message and subtracts 97 from its ASCII assignment.
+            EncryptedMessage[i] = ((c + Key) % 26 + 'a');   // Encrypted message is equal to this equation.
+            printf("%c", EncryptedMessage[i]);  // Print the new message output (Encrypted text).
+        }
+    }
+    printf("\n");   // Prints an empty line to make the output more readable to the user.
+    return 0;   // Returns the program.
+}
