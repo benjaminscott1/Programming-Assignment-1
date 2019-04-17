@@ -13,6 +13,10 @@ int main()  // Main function body.
     printf("\nEncrypted Message: \n");  // Prints Encrypted message to user.
     for(i = 0; Message[i] != '\0'; i = i + 1)   // For loop which sets i to zero, until a null is found, and adds one to it.
     {
+        if(Key < 0) // If the key entered is negative add 26 to it so the shift can be accurately performed.
+        {
+            Key = (Key * (-25)); // Take integer entered and multiply it by -25 when integer entered is negative. This accounts for negative shifts.
+        }
         if(Message[i] != ' ')   // If there isn't a space present in the input, do the below function.
         {
             if(Message[i] >= 'A' && Message[i] <= 'Z')  // If loop for determining a capital letter text.
@@ -24,7 +28,7 @@ int main()  // Main function body.
             else if(Message[i] >= 'a' && Message[i] <= 'z')  // Else if convert lower-case letters to upper-case letters.
             {
                 c = Message[i] - 97;    // Takes the message and subtracts 97 from its ASCII assignment.
-                EncryptedMessage[i] = ((c - Key + 26) % 26 + 'a' - 32);   // Encrypted message is equal to this equation.
+                EncryptedMessage[i] = ((c + Key) % 26 + 'a' - 32);   // Encrypted message is equal to this equation.
                 printf("%c", EncryptedMessage[i]);  // Print the new message output (Encrypted text).
             }
             else    // Else print other characters normally as they are read.
