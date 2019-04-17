@@ -7,7 +7,7 @@ int main()  // Main function body.
     
     printf("CAESAR CIPHER ENCRYPTION WITH KEY\n");
     printf("\nEnter a text for encryption: \n"); // Prints a prompt for the user to enter a text for encryption.
-    scanf("%[^\n]", Message);   // Scans the text entered.
+    scanf(" %[^\n]", Message);   // Scans the text entered.
     printf("\nEnter a key for encryption: \n");  // Prints a prompt for the user to enter a key.
     scanf("%d", &Key);  // Scans the key entered.
     printf("\nEncrypted Message: \n");  // Prints Encrypted message to user.
