@@ -1,0 +1,172 @@
+#include <stdio.h>  // Defines the scanf() and printf() functions.
+
+void PrintMenu(void);   // Function prototype for Print Menu.
+void CaesarCipherEncryptionWithKey(void);   // Function prototype for Caesar Cipher Encryption With Key.
+void CaesarCipherDecryptionWithKey(void);   // Function prototype for Caesar Cipher Decryption With Key.
+
+int main()  // Main function body.
+{
+    int x;  // Declare a variable and call it x. This value determines what case is run.
+    
+    printf("Encryption/Decryption Program\n\n");    //Print title of the program once.
+    PrintMenu();    // Call the PrintMenu function. It literally prints the menu to choose from.
+    scanf("%d", &x);    // Take the input typed and save it in x.
+    switch(x)   // Switch case used to have the programs seperate but with the same body of code. Instead of writing 6 seperate programs.
+    {
+        case 1: // Caesar cipher encryption with key.
+            CaesarCipherEncryptionWithKey();    // Calls the function for encrypting the caesar cipher.
+            return main();  // Returns the main menu after the function has finished.
+        case 2: // Caesar cipher decryption with key.
+            CaesarCipherDecryptionWithKey();    // Calls the function for decrypting the caesar cipher.
+            return main();  // Returns the main menu after the function has finished.
+        case 3: // Performs The Caesar Cipher Decryption without key.
+            /*
+             TO DO:
+             print text to decrypt
+             perform decryption
+             print decrypted text
+             send user to start of the program
+             */
+            break;
+        case 4: // Performs the Substitution cipher encryption with key.
+            /*
+             TO DO:
+             print text to encrypt
+             scan text
+             print required key
+             scan key
+             perform encryption
+             print encrypted text
+             send user to the start of program
+             */
+            break;
+        case 5: // Performs The Substitution cipher decryption with key.
+            /* TO DO:
+             print text to encrypt
+             scan text
+             print required key
+             scan key
+             perform decryption
+             print decrypted text
+             send user to start of program.
+             */
+            break;
+        case 6: // Performs the Substitutiom cipher decryption without key.
+            /*
+             TO DO:
+             enter encrypted text
+             Perform decryption
+             print decrypted text
+             send user to start of program
+             */
+            break;
+        case 7: // Exits program.
+            return 0;
+        default:    // Case for if choice made isn't one of the options.
+            if(x < 1 || x > 7)  // While this condition isn't met, print the below text.
+            {
+                printf("\nInvalid selection %d.\n\nPlease enter a selection between 1 and 7.\n\n", x);    // Print invalid selection to user.
+                return main();  // Return the function to main to start selection process again.
+            }
+    }
+}
+
+void PrintMenu(void)    // Initial print function for user. This is the menu they will choose from.
+{
+    printf("(1) CAESAR CIPHER ENCRYPTION WITH KEY\n");
+    printf("(2) CAESAR CIPHER DECRYPTION WITH KEY\n");
+    printf("(3) CAESAR CIPHER DECRYPTION WITHOUT KEY\n");
+    printf("(4) SUBSTITUTION CIPHER ENCRYPTION WITH KEY\n");
+    printf("(5) SUBSTITUTION CIPHER DECRYPTION WITH KEY\n");
+    printf("(6) SUBSTITUTION CIPHER DECRYPTION WITHOUT KEY\n");
+    printf("(7) EXIT PROGRAM\n\n");
+    printf("Please enter a selection: ");
+}
+
+void CaesarCipherEncryptionWithKey(void)    // This function definition contains the needed code for encrypting a caesar cipher with a key.
+{
+    char Message[1024], EncryptedMessage[1024]; // Declares Message and EncryptedMessage as chars.
+    int i, c, Key;  // Declare i, c, and Key as integers to be used in the decryption.
+    
+    printf("\nCAESAR CIPHER ENCRYPTION WITH KEY\n");
+    printf("\nEnter a text for encryption: \n"); // Prints a prompt for the user to enter a text for encryption.
+    scanf(" %[^\n]", Message);   // Scans the text entered.
+    printf("\nEnter a key for encryption: \n");  // Prints a prompt for the user to enter a key.
+    scanf("%d", &Key);  // Scans the key entered.
+    printf("\nEncrypted Message: \n");  // Prints Encrypted message to user.
+    for(i = 0; Message[i] != '\0'; i = i + 1)   // For loop which sets i to zero, until a null is found, and adds one to it.
+    {
+        if(Key < 0) // If the key entered is negative add 26 to it so the shift can be accurately performed.
+        {
+            Key = (Key * (-25)); // Take integer entered and multiply it by -25 when integer entered is negative. This accounts for negative shifts.
+        }
+        if(Message[i] != ' ')   // If there isn't a space present in the input, do the below function.
+        {
+            if(Message[i] >= 'A' && Message[i] <= 'Z')  // If loop for determining a capital letter text.
+            {
+                c = Message[i] - 65;   // Takes the message and subtracts 65 from its ASCII assignment.
+                EncryptedMessage[i] = ((c + Key) % 26 + 'A');   // Encrypted message is equal to this equation.
+                printf("%c", EncryptedMessage[i]);    // Prints the new message output (Encrypted text).
+            }
+            else if(Message[i] >= 'a' && Message[i] <= 'z')  // Else if convert lower-case letters to upper-case letters.
+            {
+                c = Message[i] - 97;    // Takes the message and subtracts 97 from its ASCII assignment.
+                EncryptedMessage[i] = ((c + Key) % 26 + 'a' - 32);   // Encrypted message is equal to this equation.
+                printf("%c", EncryptedMessage[i]);  // Print the new message output (Encrypted text).
+            }
+            else    // Else print other characters normally as they are read.
+            {
+                printf("%c", Message[i]);  // Prints characters to the user.
+            }
+        }
+        if(Message[i] == ' ')   // If there's a space present in the input, do the below function.
+        {
+            printf(" ");    // Prints a space.
+        }
+    }
+    printf("\n\n");   // Prints an empty line to make the output more readable to the user.
+}
+
+void CaesarCipherDecryptionWithKey(void)    // This function definition contains the needed code for the caesar cipher decryption with a key.
+{
+    char DecryptedMessage[1024], EncryptedMessage[1024]; // Declares DecryptedMessage and EncryptedMessage as chars.
+    int i, c, Key;  // Declare i, c, and Key as integers to be used in the decryption.
+    
+    printf("\nCAESAR CIPHER DECRYPTION WITH KEY\n");
+    printf("\nEnter encrypted text: \n"); // Prints a prompt for the user to enter an encrypted text.
+    scanf(" %[^\n]", EncryptedMessage);   // Scans the text entered.
+    printf("\nEnter a key: \n");  // Prints a prompt for the user to enter a key.
+    scanf("%d", &Key);  // Scans the key entered.
+    printf("\nDecrypted Message: \n");  // Prints Decrypted message to user.
+    for(i = 0; EncryptedMessage[i] != '\0'; i = i + 1)   // For loop which sets i to zero, until a null is found, and adds one to it.
+    {
+        if(Key < 0)
+        {
+            Key = (Key * 25);
+        }
+        if(EncryptedMessage[i] != ' ')   // If there isn't a space present in the input, do the below function.
+        {
+            if(EncryptedMessage[i] >= 'A' && EncryptedMessage[i] <= 'Z')  // If loop for determining a capital letter text.
+            {
+                c = EncryptedMessage[i] - 65;   // Takes the message and subtracts 65 from its ASCII assignment.
+                DecryptedMessage[i] = ((c - Key + 26) % 26 + 'A');   // Decrypted message is equal to this equation.
+                printf("%c", DecryptedMessage[i]);    // Prints the new message output (Decrypted text).
+            }
+            else if(EncryptedMessage[i] >= 'a' && EncryptedMessage[i] <= 'z')  // Else if convert lower-case letters to upper-case letters.
+            {
+                c = EncryptedMessage[i] - 97;    // Takes the message and subtracts 97 from its ASCII assignment.
+                DecryptedMessage[i] = (((c - Key + 26) % 26 + 'a') - 32);   // Decrypted message is equal to this equation.
+                printf("%c", DecryptedMessage[i]);  // Print the new message output (Decrypted text).
+            }
+            else    // Else print other characters normally as they are read.
+            {
+                printf("%c", EncryptedMessage[i]);  // Prints characters to the user.
+            }
+        }
+        if(EncryptedMessage[i] == ' ')   // If there's a space present in the input, do the below function.
+        {
+            printf(" ");    // Prints a space.
+        }
+    }
+    printf("\n\n");   // Prints an empty line to make the output more readable to the user.
+}
