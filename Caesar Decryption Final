@@ -13,6 +13,10 @@ int main()  // Main function body.
     printf("\nDecrypted Message: \n");  // Prints Decrypted message to user.
     for(i = 0; EncryptedMessage[i] != '\0'; i = i + 1)   // For loop which sets i to zero, until a null is found, and adds one to it.
     {
+        if(Key < 0)
+        {
+            Key = (Key * 25);
+        }
         if(EncryptedMessage[i] != ' ')   // If there isn't a space present in the input, do the below function.
         {
             if(EncryptedMessage[i] >= 'A' && EncryptedMessage[i] <= 'Z')  // If loop for determining a capital letter text.
