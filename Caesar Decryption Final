@@ -5,7 +5,7 @@ int main()  // Main function body.
     char DecryptedMessage[1024], EncryptedMessage[1024]; // Declares DecryptedMessage and EncryptedMessage as chars.
     int i, c, Key;  // Declare i, c, and Key as integers to be used in the decryption.
     
-    printf("CAESAR CIPHER ENCRYPTION WITH KEY\n");
+    printf("CAESAR CIPHER DECRYPTION WITH KEY\n");
     printf("\nEnter encrypted text: \n"); // Prints a prompt for the user to enter an encrypted text.
     scanf("%[^\n]", EncryptedMessage);   // Scans the text entered.
     printf("\nEnter a key: \n");  // Prints a prompt for the user to enter a key.
