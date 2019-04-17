@@ -1,0 +1,44 @@
+#include <stdio.h>  // Define the printf() and scanf() functions.
+
+int main()  // Main function body.
+{
+    char DecryptedMessage[1024], EncryptedMessage[1024]; // Declares DecryptedMessage and EncryptedMessage as chars.
+    int i, c, Key;  // Declare i, c, and Key as integers to be used in the decryption.
+    
+    printf("CAESAR CIPHER ENCRYPTION WITH KEY\n");
+    printf("\nEnter encrypted text: \n"); // Prints a prompt for the user to enter an encrypted text.
+    scanf("%[^\n]", EncryptedMessage);   // Scans the text entered.
+    printf("\nEnter a key: \n");  // Prints a prompt for the user to enter a key.
+    scanf("%d", &Key);  // Scans the key entered.
+    printf("\nDecrypted Message: \n");  // Prints Decrypted message to user.
+    for(i = 0; EncryptedMessage[i] != '\0'; i = i + 1)   // For loop which sets i to zero, until a null is found, and adds one to it.
+    {
+        if(EncryptedMessage[i] != ' ')   // If there isn't a space present in the input, do the below function.
+        {
+            if(EncryptedMessage[i] >= 'A' && EncryptedMessage[i] <= 'Z')  // If loop for determining a capital letter text.
+            {
+                c = EncryptedMessage[i] - 65;   // Takes the message and subtracts 65 from its ASCII assignment.
+                DecryptedMessage[i] = ((c - Key + 26) % 26 + 'A');   // Decrypted message is equal to this equation.
+                printf("%c", DecryptedMessage[i]);    // Prints the new message output (Decrypted text).
+            }
+            else if(EncryptedMessage[i] >= 'a' && EncryptedMessage[i] <= 'z')  // Else if convert lower-case letters to upper-case letters.
+            {
+                c = EncryptedMessage[i] - 97;    // Takes the message and subtracts 97 from its ASCII assignment.
+                DecryptedMessage[i] = ((c - Key + 26) % 26 + 'a' - 32);   // Decrypted message is equal to this equation.
+                printf("%c", DecryptedMessage[i]);  // Print the new message output (Decrypted text).
+            }
+            else    // Else print other characters normally as they are read.
+            {
+                printf("%c", EncryptedMessage[i]);  // Prints characters to the user.
+            }
+        }
+        if(EncryptedMessage[i] == ' ')   // If there's a space present in the input, do the below function.
+        {
+            printf(" ");    // Prints a space.
+        }
+    }
+    
+    printf("\n\n");   // Prints an empty line to make the output more readable to the user.
+    
+    return 0;   // Returns the program.
+}
