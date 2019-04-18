@@ -21,8 +21,8 @@ int main()  // Main function body.
             CaesarCipherDecryptionWithKey();    // Calls the function for decrypting the caesar cipher.
             return main();  // Returns the main menu after the function has finished.
         case 3: // Performs The Caesar Cipher Decryption without key.
-            CaesarCipherDecryptionWithoutKey();
-            return main();
+            CaesarCipherDecryptionWithoutKey(); // Calls the function which will perform a brute force attack on some encrypted text and print the possibilities to the user.
+            return main();  // Returns the user to the main menu when the decryption has finished.
         case 4: // Performs the Substitution cipher encryption with key.
             /*
              TO DO:
