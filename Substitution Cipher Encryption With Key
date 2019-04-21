@@ -4,6 +4,7 @@ int main()  // Main function body.
 {
     char Message[1024], EncryptedMessage[1024]; // Declare two chars, Message and Encrypted Message for storing what is entered and what is outputted.
     int i;  // Declare integer i, for using as an idex reference for letters in the two chars.
+    printf("SUBSTITUTION CIPHER ENCRYPTION WITH KEY\n\n");
     printf("Enter a message for encryption: \n");   // Propmts the user to enter a text for encryption.
     scanf(" %[^\n]", Message);  // Reads and stores the entered text in the message char.
     printf("\nEncrypted message: \n");  // Prints encrypted message title to the user.
