@@ -1,0 +1,158 @@
+#include <stdio.h>  // Include the Library for the scanf() and printf() definitions.
+
+int main()  // Main function body.
+{
+    char Message[1024], EncryptedMessage[1024]; // Declare two chars, Message and Encrypted Message for storing what is entered and what is outputted.
+    int i;  // Declare integer i, for using as an idex reference for letters in the two chars.
+    printf("Enter a message for encryption: \n");   // Propmts the user to enter a text for encryption.
+    scanf(" %[^\n]", Message);  // Reads and stores the entered text in the message char.
+    printf("\nEncrypted message: \n");  // Prints encrypted message title to the user.
+    for(i = 0; Message[i] != '\0'; i = i + 1)   // For loop, where for every iteration until a null is found i has one added to it for indexing.
+    {
+        if(Message[i] != ' ')   // If there is no a space present, do the below if statements.
+        {
+            if(Message[i] >= 'a' && Message[i] <='z')   // If a lowercase letter is entered convert it to an uppercase letter to do the encryption.
+            {
+                Message[i] = Message[i] - 32;   // Converts a lowercase letter to an uppercase letter.
+            }
+            if(Message[i] == 'A')   // If a letter in the message is entered as A, make the output Q.
+            {
+                EncryptedMessage[i] = 'Q';  // Takes A and makes it become Q and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter A (which is now Q).
+            }
+            if(Message[i] == 'B')   // If a letter in the message is entered as B, make the output W.
+            {
+                EncryptedMessage[i] = 'W';  // Takes B and makes it become W and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter B (which is now W).
+            }
+            if(Message[i] == 'C')   // If a letter in the message is entered as C, make the output E.
+            {
+                EncryptedMessage[i] = 'E';  // Takes C and makes it become E and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter C (which is now E).
+            }
+            if(Message[i] == 'D')   // If a letter in the message is entered as D, make the output R.
+            {
+                EncryptedMessage[i] = 'R';  // Takes D and makes it become R and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter D (which is now R).
+            }
+            if(Message[i] == 'E')   // If a letter in the message is entered as E, make the output T.
+            {
+                EncryptedMessage[i] = 'T';  // Takes E and makes it become T and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter E (which is now T).
+            }
+            if(Message[i] == 'F')   // If a letter in the message is entered as F, make the output Y.
+            {
+                EncryptedMessage[i] = 'Y';  // Takes F and makes it become Y and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter F (which is now Y).
+            }
+            if(Message[i] == 'G')   // If a letter in the message is entered as G, make the output U.
+            {
+                EncryptedMessage[i] = 'U';  // Takes G and makes it become U and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter G (which is now U).
+            }
+            if(Message[i] == 'H')   // If a letter in the message is entered as H, make the output I.
+            {
+                EncryptedMessage[i] = 'I';  // Takes H and makes it become I and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter H (which is now I).
+            }
+            if(Message[i] == 'I')   // If a letter in the message is entered as I, make the output O.
+            {
+                EncryptedMessage[i] = 'O';  // Takes I and makes it become O and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter I (which is now O).
+            }
+            if(Message[i] == 'J')   // If a letter in the message is entered as J, make the output P.
+            {
+                EncryptedMessage[i] = 'P';  // Takes J and makes it become P and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter J (which is now P).
+            }
+            if(Message[i] == 'K')   // If a letter in the message is entered as K, make the output A.
+            {
+                EncryptedMessage[i] = 'A';  // Takes K and makes it become A and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter K (which is now A).
+            }
+            if(Message[i] == 'L')   // If a letter in the message is entered as L, make the output S.
+            {
+                EncryptedMessage[i] = 'S';  // Takes L and makes it become S and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter L (which is now S).
+            }
+            if(Message[i] == 'M')   // If a letter in the message is entered as M, make the output D.
+            {
+                EncryptedMessage[i] = 'D';  // Takes M and makes it become D and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter M (which is now D).
+            }
+            if(Message[i] == 'N')   // If a letter in the message is entered as N, make the output F.
+            {
+                EncryptedMessage[i] = 'F';  // Takes N and makes it become F and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter N (which is now F).
+            }
+            if(Message[i] == 'O')   // If a letter in the message is entered as O, make the output G.
+            {
+                EncryptedMessage[i] = 'G';  // Takes O and makes it become G and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter O (which is now G).
+            }
+            if(Message[i] == 'P')   // If a letter in the message is entered as P, make the output H.
+            {
+                EncryptedMessage[i] = 'H';  // Takes P and makes it become H and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter P (which is now H).
+            }
+            if(Message[i] == 'Q')   // If a letter in the message is entered as Q, make the output J.
+            {
+                EncryptedMessage[i] = 'J';  // Takes Q and makes it become J and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter Q (which is now J).
+            }
+            if(Message[i] == 'R')   // If a letter in the message is entered as R, make the output K.
+            {
+                EncryptedMessage[i] = 'K';  // Takes R and makes it become K and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter R (which is now K).
+            }
+            if(Message[i] == 'S')   // If a letter in the message is entered as S, make the output L.
+            {
+                EncryptedMessage[i] = 'L';  // Takes S and makes it become L and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter S (which is now L).
+            }
+            if(Message[i] == 'T')   // If a letter in the message is entered as T, make the output Z.
+            {
+                EncryptedMessage[i] = 'Z';  // Takes T and makes it become Z and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter T (which is now Z).
+            }
+            if(Message[i] == 'U')   // If a letter in the message is entered as U, make the output X.
+            {
+                EncryptedMessage[i] = 'X';  // Takes U and makes it become X and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter U (which is now X).
+            }
+            if(Message[i] == 'V')   // If a letter in the message is entered as V, make the output C.
+            {
+                EncryptedMessage[i] = 'C';  // Takes V and makes it become C and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter V (which is now C).
+            }
+            if(Message[i] == 'W')   // If a letter in the message is entered as W, make the output V.
+            {
+                EncryptedMessage[i] = 'V';  // Takes W and makes it become V and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter W (which is now V).
+            }
+            if(Message[i] == 'X')   // If a letter in the message is entered as X, make the output B.
+            {
+                EncryptedMessage[i] = 'B';  // Takes X and makes it become B and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter X (which is now B).
+            }
+            if(Message[i] == 'Y')   // If a letter in the message is entered as Y, make the output N.
+            {
+                EncryptedMessage[i] = 'N';  // Takes Y and makes it become N and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter Y (which is now N).
+            }
+            if(Message[i] == 'Z')   // If a letter in the message is entered as Z, make the output M.
+            {
+                EncryptedMessage[i] = 'M';  // Takes Z and makes it become M and stores that in encrypted message for output.
+                printf("%c", EncryptedMessage[i]);  // Prints the new letter Z (which is now M).
+            }
+            if(Message[i] < 'A' || Message[i] > 'Z')    // If any other character that is not an alphabetic letter is entered, do no change to it and print it in it's correct place.
+                printf("%c", Message[i]);   // Prints the entered character to the user.
+        }
+        if(Message[i] == ' ')   // If a space is entered, print a space in the output.
+        {
+            printf(" ");    // Prints a space to the output.
+        }
+    }
+    printf("\n\n"); // Print two lines between the encrypted message and the end of program print statement.
+    return 0;   // Returns 0 to the program, ending the main function.
+}
