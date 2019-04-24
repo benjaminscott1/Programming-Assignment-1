@@ -120,9 +120,13 @@ void CaesarCipherDecryptionWithKey(void)    // This function definition contains
     printf("\nDecrypted Message: \n");  // Prints Decrypted message to user.
     for(i = 0; EncryptedMessage[i] != '\0'; i = i + 1)   // For loop which sets i to zero, until a null is found, and adds one to it.
     {
-        if(Key < 0)
+        if(Key < 0) // If the key is less than zero, multiply it by -25 to make it a positive number again, with the correct shifts.
         {
-            Key = (Key * 25);
+            Key = (Key * (-25));    // Multiply the key entered by -25 to make it positive.
+        }
+        if(Key > 26)    // If the key entered is greater than 26 an operation needs to be performed to make it in the range of 0-26. So the user can still enter any key they want.
+        {
+            Key = (Key % 26);   // Take any key greater than 26 and perform a modulo on it before it's used in the decryption equation so it doesn't result in garbage.
         }
         if(EncryptedMessage[i] != ' ')   // If there isn't a space present in the input, do the below function.
         {
