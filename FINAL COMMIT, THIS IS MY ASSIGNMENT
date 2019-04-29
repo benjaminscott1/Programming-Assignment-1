@@ -1,0 +1,381 @@
+// Caesar/Substitution Cipher Encryption/Decryption Program.
+
+// Included libraries.
+#include <stdio.h>  // Defines the scanf() and printf() functions.
+
+// Function prototypes.
+void PrintMenu(void);   // Function prototype for Print Menu.
+char CaesarCipherEncryptionWithKey(char Message[1024], int i, int Key); // Function prototype for Caesar cipher encryption With Key.
+char CaesarCipherDecryptionWithKey(char Message[1024], int i, int Key); // Function prototype for Caesar cipher decryption With Key.
+char SubstitutionCipherEncryptionWithKey(char Message[1024], int i);    // Function prototype for Substitution cipher encryption with key.
+char SubstitutionCipherDecryptionWithKey(char Message[1024], int i);    // Function prototype for Substitution cipher decryption with key.
+
+// Main function body.
+int main()
+{
+    // Variables declared.
+    char Message[1024]; // Declare the char Message and store text entered within it.
+    int x = 0, i = 0, Key = 0;  // Declare the integers x, i, and Key. Re-initialise them to zero.
+    
+    // Print the title and Menu for the user, and scan what is entered to jump to the specific case.
+    printf("ENCRYPTION/DECRYPTION PROGRAM\n");    //Print the program title to the user.
+    PrintMenu();    // Call the PrintMenu function. It literally prints the menu to choose from.
+    scanf("%d", &x);    // Take the integer entered and store it in x, this will decide which case is jumped to.
+    
+    // Switch cases.
+    switch(x)   // Each of the cases performs a different function. The value from x is used to decide the case to jump to.
+    {
+            // Caesar cipher encryption with key. This is option 1.
+        case 1:
+            CaesarCipherEncryptionWithKey(Message, i, Key);    // Calls the function for encrypting the caesar cipher.
+            printf("\nEncrypted message: \n%s\n\n", Message);   // Takes the string that is returned (encrypted text), and prints it to the user.
+            return main();  // Returns the main menu after the case has finished.
+            
+            // Caesar cipher decryption with key. This is option 2.
+        case 2:
+            CaesarCipherDecryptionWithKey(Message, i, Key);    // Calls the function for decrypting the caesar cipher.
+            printf("\nEncrypted message: \n%s\n\n", Message);   // Takes the string that is returned (decrypted text), and prints it to the user.
+            return main();  // Returns the main menu after the case has finished.
+            
+            // Substitution cipher with key. This is option 3.
+        case 3:
+            SubstitutionCipherEncryptionWithKey(Message, i);    // Calls the function for encrypting the substitution cipher.
+            printf("\nEncrypted message: \n%s\n\n", Message);   // Takes the string that is returned (encrypted text) and prints it to the user.
+            return main();  // Returns the main menu after the case has finished.
+            
+            // Substitution cipher decryption with key. This is option 4.
+        case 4:
+            SubstitutionCipherDecryptionWithKey(Message, i);    // Calls the function for decrypting the substitution cipher.
+            printf("\nEncrypted message: \n%s\n\n", Message);   // Takes the string that is returned (decrypted text) and prints it to the user.
+            return main();  // Returns the main menu after the case has finished.
+            
+            // Exit program.
+        case 5:
+            return 0;   // Returns an integer 0, which ends the program.
+            
+            // If none of the above are selected the default case will run.
+        default:
+            if(x < 1 || x > 5)  // If condition to help the user select one of the correct options to choose from.
+            {
+                printf("\nInvalid selection %d.\nPlease enter a selection between 1 and 7.\n\n", x);    // Print invalid selection to user.
+                return main();  // Return the main function to start selection process again.
+            }
+    }
+}
+
+// Function definitions.
+
+// This function prints the menu to the user to make a selection from.
+void PrintMenu(void)    // Void function doesn't return a value.
+{
+    printf("(1) CAESAR CIPHER ENCRYPTION WITH KEY\n");  // Prints option 1 to the user.
+    printf("(2) CAESAR CIPHER DECRYPTION WITH KEY\n");  // Prints option 2 to the user.
+    printf("(3) SUBSTITUTION CIPHER ENCRYPTION WITH KEY\n");    // Prints option 3 to the user.
+    printf("(4) SUBSTITUTION CIPHER DECRYPTION WITH KEY\n");    // Prints option 4 to the user.
+    printf("(5) EXIT PROGRAM\n");   // Prints option 5 to the user.
+    printf("Please enter a selection: ");   // Prints a prompt to the user to select an option from above.
+}
+
+// This function performs the Caesar Cipher encryption on text entered by the user, with a key also entered by the user.
+char CaesarCipherEncryptionWithKey(char Message[1024], int i, int Key)  // A char is returned to main, it has been defined with the data types within the name.
+{
+    printf("\nCAESAR CIPHER ENCRYPTION WITH KEY\nEnter a text for encryption: \n"); // Prints a prompt for the user to enter a text for encryption.
+    scanf(" %[^\n]", Message);   // Scans the text entered.
+    printf("\nEnter a key for encryption: \n");  // Prints a prompt for the user to enter a key.
+    scanf("%d", &Key);  // Scans the key entered.
+    if(Key < 0) // If the key entered is less than zero, multiply it out for accurate rotation.
+    {
+        Key *= -25; // Muiltiplies Key by -25 to bring it out of the negatives but with correct rotation.
+    }
+    for(i = 0; Message[i] != '\0' ; i++)   // For loop which sets i to zero, until a null is found, and adds one to it.
+    {
+        if(Message[i] >= 'A' && Message[i] <= 'Z')  // If loop for determining a capital letter text.
+            {
+                Message[i] = (((Message[i] - 65) + Key) % 26 + 'A');   // For capitals, the message has 65 taken from it to set the alphabet in the range of 0-25, then the key is added to this, then it is modded by 26 (The amount of letters in the alphabet), and finally the physical letter is added back to it.
+            }
+        else if(Message[i] >= 'a' && Message[i] <= 'z')  // Else if convert lower-case letters to upper-case letters and perform the rotation.
+            {
+                Message[i] = (((Message[i] - 97) + Key) % 26 + 'A');   // For lowercase, the message has 97 taken from it to set the alphabet in the range of 0-25, then the key is added to this, then it is modded by 26 (The amount of letters in the alphabet), and finally the physical letter is added back to it.
+            }
+        else    // Otherwise if none of the above conditions are met, do the operation below.
+        {
+            Message[i] = Message[i];    // If a character is found that doesn't fall into the alphabet range, that is just stored as is and nothing is done to it.
+        }
+    }
+    return *Message;    // Return the message to main.
+}
+
+// This function performs the Caesar Cipher decryption on text entered by the user, with a key known to them for decryption.
+char CaesarCipherDecryptionWithKey(char Message[1024], int i, int Key)  // A char is returned to main, it has been defined with the data types within the name.
+{
+    
+    printf("\nCAESAR CIPHER DECRYPTION WITH KEY\nEnter encrypted text: \n"); // Prints a prompt for the user to enter an encrypted text.
+    scanf(" %[^\n]", Message);   // Scans the text entered.
+    printf("\nEnter a key: \n");  // Prints a prompt for the user to enter a key.
+    scanf("%d", &Key);  // Scans the key entered.
+    if(Key < 0) // If the key entered is less than zero, multiply it by -25 to make it positive again for the correct rotation.
+    {
+        Key *= -25; // Multiplies key enetered by -25.
+    }
+    if(Key > 26)    // If the key is greater than 26, perform a mod on that to make the number more managable and keep it in the range of shifts.
+    {
+        Key %= 26;  // Take key and perform the modulus operation.
+    }
+    for(i = 0; Message[i] != '\0'; i = i + 1)   // For loop which sets i to zero, until a null is found, and adds one to it.
+    {
+        if(Message[i] >= 'A' && Message[i] <= 'Z')  // If loop for a capital letter text.
+            {
+                Message[i] = (((Message[i] - 39) - Key) % 26 + 'A');   // Decrypted message has 65 taken, setting alphabet to 0-25, then the key is taken from that, then 26 is added to that, then it's modded, and the letter is added back on.
+            }
+        else if(Message[i] >= 'a' && Message[i] <= 'z')  // Else if do the shift on lower-case letters.
+            {
+                Message[i] = (((Message[i] - 71) - Key) % 26 + 'A');   // // Decrypted message has 97 taken, setting alphabet to 0-25, then the key is taken from that, then 26 is added to that, then it's modded, and the letter is added back on.
+            }
+        else
+            {
+                Message[i] = Message[i];    // If a character is found that doesn't fall in that range just store it and do nothing else with it.
+            }
+    }
+    return *Message;    // Returns the message to main.
+}
+
+// This function performs a Substitution Cipher encryption with a key provided. It takes in a text and encrypts it, then outputs the encrypted text.
+char SubstitutionCipherEncryptionWithKey(char Message[1024], int i) // A char is returned to main, it has been defined with the data types within the name.
+{
+    printf("\nSUBSTITUTION CIPHER ENCRYPTION WITH KEY\n\nEnter a text for encryption: \n"); // Prints the name of the case, and prompts the user to enter text.
+    scanf(" %[^\n]", Message);  // Scans the text entered and stores it in the string calles message.
+    
+    for(i = 0; Message[i] != '\0'; i++) // For condition, initialises i to zero, reads the message until a null is found, and if it doesn't find one it increments i by one.
+    {
+        if(Message[i] == 'A' || Message[i] == 'a')  // If the letter A is entered, capital or lowercase, it substitutes capital Q for output at that index.
+        {
+            Message[i] = 'Q';   // Takes Q and stores it in the place where A was.
+        }
+        else if(Message[i] == 'B' || Message[i] =='b')  // If else the letter B is entered, capital or lowercase, it substitutes capital W for output at that index.
+        {
+            Message[i] = 'W';   // Takes W and stores it in the place where B was.
+        }
+        else if(Message[i] == 'C' || Message[i] == 'c') // If else the letter C is entered, capital or lowercase, it substitutes capital E for output at that index.
+        {
+            Message[i] = 'E';   // Takes E and stores it in the place where C was.
+        }
+        else if(Message[i] == 'D' || Message[i] == 'd') // If else the letter D is entered, capital or lowercase, it substitutes capital R for output at that index.
+        {
+            Message[i] = 'R';   // Takes R and stores it in the place where D was.
+        }
+        else if(Message[i] == 'E' || Message[i] == 'e') // If else the letter E is entered, capital or lowercase, it substitutes capital T for output at that index.
+        {
+            Message[i] = 'T';   // Takes T and stores it in the place where E was.
+        }
+        else if(Message[i] == 'F' || Message[i] == 'f') // If else the letter F is entered, capital or lowercase, it substitutes capital Y for output at that index.
+        {
+            Message[i] = 'Y';   // Takes Y and stores it in the place where F was.
+        }
+        else if(Message[i] == 'G' || Message[i] == 'g') // If else the letter G is entered, capital or lowercase, it substitutes capital U for output at that index.
+        {
+            Message[i] = 'U';   // Takes U and stores it in the place where G was.
+        }
+        else if(Message[i] == 'H' || Message[i] == 'h') // If else the letter H is entered, capital or lowercase, it substitutes capital I for output at that index.
+        {
+            Message[i] = 'I';   // Takes I and stores it in the place where H was.
+        }
+        else if(Message[i] == 'I' || Message[i] == 'i') // If else the letter I is entered, capital or lowercase, it substitutes capital O for output at that index.
+        {
+            Message[i] = 'O';   // Takes O and stores it in the place where I was.
+        }
+        else if(Message[i] == 'J' || Message[i] == 'j') // If else the letter J is entered, capital or lowercase, it substitutes capital P for output at that index.
+        {
+            Message[i] = 'P';   // Takes P and stores it in the place where J was.
+        }
+        else if(Message[i] == 'K' || Message[i] == 'k') // If else the letter K is entered, capital or lowercase, it substitutes capital A for output at that index.
+        {
+            Message[i] = 'A';   // Takes A and stores it in the place where K was.
+        }
+        else if(Message[i] == 'L' || Message[i] == 'l') // If else the letter L is entered, capital or lowercase, it substitutes capital S for output at that index.
+        {
+            Message[i] = 'S';   // Takes S and stores it in the place where L was.
+        }
+        else if(Message[i] == 'M' || Message[i] == 'm') // If else the letter M is entered, capital or lowercase, it substitutes capital D for output at that index.
+        {
+            Message[i] = 'D';   // Takes D and stores it in the place where M was.
+        }
+        else if(Message[i] == 'N' || Message[i] == 'n') // If else the letter N is entered, capital or lowercase, it substitutes capital F for output at that index.
+        {
+            Message[i] = 'F';   // Takes F and stores it in the place where N was.
+        }
+        else if(Message[i] == 'O' || Message[i] == 'o') // If else the letter O is entered, capital or lowercase, it substitutes capital G for output at that index.
+        {
+            Message[i] = 'G';   // Takes G and stores it in the place where O was.
+        }
+        else if(Message[i] == 'P' || Message[i] == 'p') // If else the letter P is entered, capital or lowercase, it substitutes capital H for output at that index.
+        {
+            Message[i] = 'H';   // Takes H and stores it in the place where P was.
+        }
+        else if(Message[i] == 'Q' || Message[i] == 'q') // If else the letter Q is entered, capital or lowercase, it substitutes capital J for output at that index.
+        {
+            Message[i] = 'J';   // Takes J and stores it in the place where Q was.
+        }
+        else if(Message[i] == 'R' || Message[i] == 'r') // If else the letter R is entered, capital or lowercase, it substitutes capital K for output at that index.
+        {
+            Message[i] = 'K';   // Takes K and stores it in the place where R was.
+        }
+        else if(Message[i] == 'S' || Message[i] == 's') // If else the letter S is entered, capital or lowercase, it substitutes capital L for output at that index.
+        {
+            Message[i] = 'L';   // Takes L and stores it in the place where S was.
+        }
+        else if(Message[i] == 'T' || Message[i] == 't') // If else the letter T is entered, capital or lowercase, it substitutes capital Z for output at that index.
+        {
+            Message[i] = 'Z';   // Takes Z and stores it in the place where T was.
+        }
+        else if(Message[i] == 'U' || Message[i] == 'u') // If else the letter U is entered, capital or lowercase, it substitutes capital X for output at that index.
+        {
+            Message[i] = 'X';   // Takes X and stores it in the place where U was.
+        }
+        else if(Message[i] == 'V' || Message[i] == 'v') // If else the letter V is entered, capital or lowercase, it substitutes capital C for output at that index.
+        {
+            Message[i] = 'C';   // Takes C and stores it in the place where V was.
+        }
+        else if(Message[i] == 'W' || Message[i] == 'w') // If else the letter W is entered, capital or lowercase, it substitutes capital V for output at that index.
+        {
+            Message[i] = 'V';   // Takes V and stores it in the place where W was.
+        }
+        else if(Message[i] == 'X' || Message[i] == 'x') // If else the letter X is entered, capital or lowercase, it substitutes capital B for output at that index.
+        {
+            Message[i] = 'B';   // Takes B and stores it in the place where X was.
+        }
+        else if(Message[i] == 'Y' || Message[i] == 'y') // If else the letter Y is entered, capital or lowercase, it substitutes capital N for output at that index.
+        {
+            Message[i] = 'N';   // Takes N and stores it in the place where Y was.
+        }
+        else if(Message[i] == 'Z' || Message[i] == 'z') // If else the letter Z is entered, capital or lowercase, it substitutes capital M for output at that index.
+        {
+            Message[i] = 'M';   // Takes M and stores it in the place where Z was.
+        }
+        else    // Else if it doesn't match any othe above conditions, leave it alone, and store it in the correct index in the string.
+        {
+            Message[i] = Message[i];    // The thing that doesn't equal the other things saved in the spot it was already in.
+        }
+    }
+    return *Message;    // Returns the message to main.
+}
+
+// This function performs a Substitution Cipher decryption with a key provided. It takes in a text and decrypts it, then outputs the decrypted text.
+char SubstitutionCipherDecryptionWithKey(char Message[1024], int i) // A char is returned to main, it has been defined with the data types within the name.
+{
+    
+    printf("\nSUBSTITUTION CIPHER DECRYPTION WITH KEY\n\nEnter an encrypted text: \n"); // Prints the name of the case, and prompts the user to enter text.
+    scanf(" %[^\n]", Message);  // Scans the text entered and stores it in the string calles message.
+    
+    for(i = 0; Message[i] != '\0'; i++) // For condition, initialises i to zero, reads the message until a null is found, and if it doesn't find one it increments i by one.
+    {
+        if(Message[i] == 'Q' || Message[i] == 'q')  // If the letter Q is entered, capital or lowercase, it substitutes capital A for output at that index.
+        {
+            Message[i] = 'A';   // Takes A and stores it in the place where Q was.
+        }
+        else if(Message[i] == 'W' || Message[i] =='w')  // If the letter W is entered, capital or lowercase, it substitutes capital B for output at that index.
+        {
+            Message[i] = 'B';   // Takes B and stores it in the place where W was.
+        }
+        else if(Message[i] == 'E' || Message[i] == 'e') // If the letter E is entered, capital or lowercase, it substitutes capital C for output at that index.
+        {
+            Message[i] = 'C';   // Takes C and stores it in the place where E was.
+        }
+        else if(Message[i] == 'R' || Message[i] == 'r') // If the letter R is entered, capital or lowercase, it substitutes capital D for output at that index.
+        {
+            Message[i] = 'D';   // Takes D and stores it in the place where R was.
+        }
+        else if(Message[i] == 'T' || Message[i] == 't') // If the letter T is entered, capital or lowercase, it substitutes capital E for output at that index.
+        {
+            Message[i] = 'E';   // Takes E and stores it in the place where T was.
+        }
+        else if(Message[i] == 'Y' || Message[i] == 'y') // If the letter Y is entered, capital or lowercase, it substitutes capital F for output at that index.
+        {
+            Message[i] = 'F';   // Takes F and stores it in the place where Y was.
+        }
+        else if(Message[i] == 'U' || Message[i] == 'u') // If the letter U is entered, capital or lowercase, it substitutes capital G for output at that index.
+        {
+            Message[i] = 'G';   // Takes G and stores it in the place where U was.
+        }
+        else if(Message[i] == 'I' || Message[i] == 'i') // If the letter I is entered, capital or lowercase, it substitutes capital H for output at that index.
+        {
+            Message[i] = 'H';   // Takes H and stores it in the place where I was.
+        }
+        else if(Message[i] == 'O' || Message[i] == 'o') // If the letter O is entered, capital or lowercase, it substitutes capital I for output at that index.
+        {
+            Message[i] = 'I';   // Takes I and stores it in the place where O was.
+        }
+        else if(Message[i] == 'P' || Message[i] == 'p') // If the letter P is entered, capital or lowercase, it substitutes capital J for output at that index.
+        {
+            Message[i] = 'J';   // Takes J and stores it in the place where P was.
+        }
+        else if(Message[i] == 'A' || Message[i] == 'a') // If the letter A is entered, capital or lowercase, it substitutes capital K for output at that index.
+        {
+            Message[i] = 'K';   // Takes K and stores it in the place where A was.
+        }
+        else if(Message[i] == 'S' || Message[i] == 's') // If the letter S is entered, capital or lowercase, it substitutes capital L for output at that index.
+        {
+            Message[i] = 'L';   // Takes L and stores it in the place where S was.
+        }
+        else if(Message[i] == 'D' || Message[i] == 'd') // If the letter D is entered, capital or lowercase, it substitutes capital M for output at that index.
+        {
+            Message[i] = 'M';   // Takes M and stores it in the place where D was.
+        }
+        else if(Message[i] == 'F' || Message[i] == 'f') // If the letter F is entered, capital or lowercase, it substitutes capital N for output at that index.
+        {
+            Message[i] = 'N';   // Takes N and stores it in the place where F was.
+        }
+        else if(Message[i] == 'G' || Message[i] == 'g') // If the letter G is entered, capital or lowercase, it substitutes capital O for output at that index.
+        {
+            Message[i] = 'O';   // Takes O and stores it in the place where G was.
+        }
+        else if(Message[i] == 'H' || Message[i] == 'h') // If the letter H is entered, capital or lowercase, it substitutes capital P for output at that index.
+        {
+            Message[i] = 'P';   // Takes P and stores it in the place where H was.
+        }
+        else if(Message[i] == 'J' || Message[i] == 'j') // If the letter J is entered, capital or lowercase, it substitutes capital Q for output at that index.
+        {
+            Message[i] = 'Q';   // Takes Q and stores it in the place where J was.
+        }
+        else if(Message[i] == 'K' || Message[i] == 'k') // If the letter K is entered, capital or lowercase, it substitutes capital R for output at that index.
+        {
+            Message[i] = 'R';   // Takes R and stores it in the place where K was.
+        }
+        else if(Message[i] == 'L' || Message[i] == 'l') // If the letter L is entered, capital or lowercase, it substitutes capital S for output at that index.
+        {
+            Message[i] = 'S';   // Takes S and stores it in the place where L was.
+        }
+        else if(Message[i] == 'Z' || Message[i] == 'z') // If the letter Z is entered, capital or lowercase, it substitutes capital T for output at that index.
+        {
+            Message[i] = 'T';   // Takes T and stores it in the place where Z was.
+        }
+        else if(Message[i] == 'X' || Message[i] == 'x') // If the letter X is entered, capital or lowercase, it substitutes capital U for output at that index.
+        {
+            Message[i] = 'U';   // Takes U and stores it in the place where X was.
+        }
+        else if(Message[i] == 'C' || Message[i] == 'c') // If the letter C is entered, capital or lowercase, it substitutes capital V for output at that index.
+        {
+            Message[i] = 'V';   // Takes V and stores it in the place where C was.
+        }
+        else if(Message[i] == 'V' || Message[i] == 'v') // If the letter V is entered, capital or lowercase, it substitutes capital W for output at that index.
+        {
+            Message[i] = 'W';   // Takes W and stores it in the place where V was.
+        }
+        else if(Message[i] == 'B' || Message[i] == 'b') // If the letter B is entered, capital or lowercase, it substitutes capital X for output at that index.
+        {
+            Message[i] = 'X';   // Takes X and stores it in the place where B was.
+        }
+        else if(Message[i] == 'N' || Message[i] == 'n') // If the letter N is entered, capital or lowercase, it substitutes capital Y for output at that index.
+        {
+            Message[i] = 'Y';   // Takes Y and stores it in the place where N was.
+        }
+        else if(Message[i] == 'M' || Message[i] == 'm') // If the letter M is entered, capital or lowercase, it substitutes capital Z for output at that index.
+        {
+            Message[i] = 'Z';   // Takes Z and stores it in the place where M was.
+        }
+        else    // Else if it doesn't match any othe above conditions, leave it alone, and store it in the correct index in the string.
+        {
+            Message[i] = Message[i];    // The thing that doesn't equal the other things saved in the spot it was already in.
+        }
+    }
+    return *Message;    // Returns the message to main.
+}
